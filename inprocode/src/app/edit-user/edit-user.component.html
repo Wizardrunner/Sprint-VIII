@@ -1,0 +1,10 @@
+<!-- edit-user.component.html -->
+<h2>Editar Usuario</h2>
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" placeholder="Nombre">
+  <input type="text" formControlName="surname" placeholder="Apellido">
+  <input type="email" formControlName="email" placeholder="Email">
+  <!-- Añade campos adicionales según sea necesario -->
+  <button type="button" (click)="onCancel()">Cancelar</button>
+  <button type="submit">Guardar Cambios</button>
+</form>

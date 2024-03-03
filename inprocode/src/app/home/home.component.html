@@ -1,0 +1,34 @@
+<!-- src/app/home.component.html -->
+<div>
+  <h2>Crear Nuevo Usuario</h2>
+  <form [formGroup]="userForm" (ngSubmit)="createUser()">
+    <input type="text" formControlName="name" placeholder="Nombre" required>
+    <input type="text" formControlName="surname" placeholder="Apellido">
+    <input type="email" formControlName="email" placeholder="Email" required>
+    <input type="password" formControlName="password" placeholder="Contraseña" required>
+    <button type="submit" [disabled]="!userForm.valid">Crear Usuario</button>
+  </form>
+</div>
+
+<div>
+  <h2>Lista de Usuarios</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id_user }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.surname }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <button (click)="editUser(user)">Editar</button>
+        <button *ngIf="user.id_user !== undefined" (click)="deleteUser(user.id_user)">Eliminar</button>
+      </td>
+    </tr>
+          </table>
+</div>
