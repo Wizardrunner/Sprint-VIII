@@ -8,6 +8,7 @@ import bookRoutes from './routes/bookRoutes.js';
 import { testConnection } from './db.js';
 import dotenv from 'dotenv';
 import { insertInitialUserData } from './start_data.js';
+import locationRoutes from './routes/locationRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -23,6 +24,8 @@ app.use(express.json());
 
 // Middleware para analizar el cuerpo de las solicitudes con datos de formulario
 app.use(express.urlencoded({ extended: true })); // Para analizar datos de formularios en el cuerpo de la solicitud
+
+app.use('/locations', locationRoutes);
 
 await testConnection();
 await insertInitialUserData();

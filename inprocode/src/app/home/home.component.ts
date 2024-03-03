@@ -6,12 +6,14 @@ import { User } from '../models/user.model';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { NavBarComponent } from '../nav-bar/nav-bar.component'; 
+
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Importa ReactiveFormsModule aquí
+  imports: [CommonModule, ReactiveFormsModule, NavBarComponent], // Importa ReactiveFormsModule aquí
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

@@ -7,7 +7,7 @@ import { GraficasComponent } from './graficas/graficas.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
-  { path: 'mapa', component: MapaComponent, title: 'Mapa' },
+  { path: 'mapa', component: MapaComponent, title: 'Map' },
   { path: 'fullCalendar', component: FullCalendarComponent, title: 'FullCalendar' },
-  { path: 'graficas', component: GraficasComponent, title: 'Gráficas' },
+  { path: 'graficas', component: GraficasComponent, title: 'Charts' },
 ];
