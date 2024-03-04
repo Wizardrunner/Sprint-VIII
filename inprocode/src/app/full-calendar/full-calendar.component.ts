@@ -1,3 +1,4 @@
+// src/app/full-calendar/full-calendar.component.ts
 import { Component, AfterViewInit } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -21,7 +22,8 @@ export class FullCalendarComponent implements AfterViewInit {
       initialView: 'dayGridMonth',
       events: [],
       dateClick: this.handleDateClick.bind(this), // Maneja clic en fecha
-      eventClick: this.handleEventClick.bind(this) // Maneja clic en evento
+      eventClick: this.handleEventClick.bind(this), // Maneja clic en evento
+      displayEventTime: false, // No mostrar la hora del evento junto al título
     };
   }
 
@@ -37,10 +39,15 @@ export class FullCalendarComponent implements AfterViewInit {
 
   handleDateClick(arg: any): void {
     const title = prompt('Título del Evento:');
-    const date = arg.dateStr; // Fecha seleccionada
-    let startTime = prompt('Hora de inicio (HH:MM):', '12:00') ?? '12:00';
-    let endTime = prompt('Hora de fin (HH:MM):', '13:00') ?? '13:00';
-  
+    const startDate = arg.dateStr; // Fecha seleccionada para el inicio
+    let endDate = prompt('Fecha de finalización del Evento (YYYY-MM-DD):', arg.dateStr); // Fecha de finalización
+
+    // Si el usuario cancela el prompt de endDate, usa startDate como endDate.
+    endDate = endDate ?? startDate;
+
+    let startTime = prompt('Hora de inicio (HH:MM):', '00:00') ?? '00:00';
+    let endTime = prompt('Hora de fin (HH:MM):', '23:59') ?? '23:59';
+
     // Asegurarse de que las horas sean válidas
     if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(startTime)) {
       alert("Hora de inicio no válida. Formato correcto HH:MM.");
@@ -50,26 +57,26 @@ export class FullCalendarComponent implements AfterViewInit {
       alert("Hora de fin no válida. Formato correcto HH:MM.");
       return;
     }
-  
+
     // Combinar fecha con hora
-    const startDateTime = `${date}T${startTime}`;
-    const endDateTime = `${date}T${endTime}`;
-  
+    const startDateTime = `${startDate}T${startTime}`;
+    const endDateTime = `${endDate}T${endTime}`;
+
     if (title) {
-      const newEvent = { 
-        title, 
-        start: startDateTime,
-        end: endDateTime
-      };
-  
-      this.eventService.addEvent(newEvent).subscribe(() => {
-        this.loadEvents(); // Recarga los eventos
-      }, error => {
-        console.error('Error al añadir el evento:', error);
-        alert('Hubo un problema al añadir el evento.');
-      });
+        const newEvent = { 
+            title, 
+            start: startDateTime,
+            end: endDateTime
+        };
+
+        this.eventService.addEvent(newEvent).subscribe(() => {
+            this.loadEvents(); // Recarga los eventos
+        }, error => {
+            console.error('Error al añadir el evento:', error);
+            alert('Hubo un problema al añadir el evento.');
+        });
     }
-  }
+}
     
   handleEventClick(clickInfo: any): void {
     if (confirm(`¿Estás seguro de que quieres eliminar el evento '${clickInfo.event.title}'?`)) {
