@@ -1,14 +1,18 @@
-// src/app/graficas.component.ts
+// src/app/graficas/graficas.component.ts
 import { Component } from '@angular/core';
-import { NavBarComponent } from '../nav-bar/nav-bar.component'; 
-
+import { BarChartComponent } from '../bar-chart/bar-chart.component';
+import { PieChartComponent } from '../pie-chart/pie-chart.component'; 
 @Component({
   selector: 'app-graficas',
   standalone: true,
-  imports: [NavBarComponent],
-  templateUrl: './graficas.component.html',
-  styleUrl: './graficas.component.scss'
+  imports: [BarChartComponent, PieChartComponent], 
+  template: `
+    <div>
+      <h2>Gráficos</h2>
+      <app-bar-chart></app-bar-chart>
+      <app-pie-chart></app-pie-chart>
+    </div>
+  `,
+  styles: []
 })
-export class GraficasComponent {
-
-}
+export class GraficasComponent {}

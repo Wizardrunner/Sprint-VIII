@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 import { insertInitialUserData } from './start_data.js';
 import locationRoutes from './routes/locationRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
+import chartDataRoutes from './routes/chartDataRoutes.js';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use('/locations', locationRoutes);
 
 app.use('/events', eventRoutes);
 
+app.use('/chart', chartDataRoutes);
 
 await testConnection();
 await insertInitialUserData();
