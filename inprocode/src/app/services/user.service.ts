@@ -28,4 +28,9 @@ export class UserService {
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  addLocation(location: { name: string; latitude: number; longitude: number; }): Observable<any> {
+    return this.http.post<any>(this.apiUrl, location);
+  }
+  
 }
