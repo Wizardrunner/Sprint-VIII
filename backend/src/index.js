@@ -9,6 +9,8 @@ import { testConnection } from './db.js';
 import dotenv from 'dotenv';
 import { insertInitialUserData } from './start_data.js';
 import locationRoutes from './routes/locationRoutes.js';
+import eventRoutes from './routes/eventRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -26,6 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Para analizar datos de formularios en el cuerpo de la solicitud
 
 app.use('/locations', locationRoutes);
+
+app.use('/events', eventRoutes);
+
 
 await testConnection();
 await insertInitialUserData();
