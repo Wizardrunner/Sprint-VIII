@@ -14,4 +14,14 @@ export class EventService {
   getEvents(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
+
+
+  addEvent(eventData: any): Observable<any> {
+    return this.http.post(this.baseUrl, eventData);
+  }
+
+
+deleteEvent(eventId: number): Observable<any> {
+  return this.http.delete(`${this.baseUrl}/${eventId}`);
+}
 }
