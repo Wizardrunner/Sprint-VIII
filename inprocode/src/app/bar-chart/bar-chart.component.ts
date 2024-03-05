@@ -13,23 +13,20 @@ Chart.register(...registerables);
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit {
-  currentYearIndex: number = 0; // Índice del año actual en el array de años
-  years: number[] = []; // Array de años
+  currentYearIndex: number = 0; 
+  years: number[] = []; 
   chart: Chart | null = null;
 
   constructor(private dataService: BarChartDataService) {}
 
   ngOnInit(): void {
     this.dataService.getBarChartData().subscribe(data => {
-      // Extrae los años de los datos y actualiza el array de años
       this.years = data.map(d => d.year);
-      // Por defecto, muestra la gráfica del primer año disponible
       this.updateChartForYear(this.years[this.currentYearIndex]);
     });
   }
 
   navigateYears(direction: number): void {
-    // Actualiza el índice del año actual y recalcula para asegurar que esté dentro del rango
     this.currentYearIndex = (this.currentYearIndex + this.years.length + direction) % this.years.length;
     this.updateChartForYear(this.years[this.currentYearIndex]);
   }
@@ -42,7 +39,6 @@ export class BarChartComponent implements OnInit {
         return;
       }
   
-      // Prepara los datos de la gráfica
       const chartData = {
         labels: ['Technology', 'Clothing', 'Food', 'Home'],
         datasets: [

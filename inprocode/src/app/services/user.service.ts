@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model'; // Asegúrate de definir una interfaz o clase User
+import { User } from '../models/user.model'; // Definir una interfaz o clase User
 
 @Injectable({
   providedIn: 'root'

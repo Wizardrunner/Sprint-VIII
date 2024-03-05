@@ -13,13 +13,13 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NavBarComponent], // Importa ReactiveFormsModule aquí
+  imports: [CommonModule, ReactiveFormsModule, NavBarComponent], 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   users: User[] = [];
-  userForm: FormGroup; // Define un FormGroup para el formulario
+  userForm: FormGroup; 
 
   constructor(private dialog: MatDialog, private userService: UserService) { 
     this.userForm = new FormGroup({
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadUsers(); // Cargar usuarios cuando el componente esté listo
+    this.loadUsers(); 
   }
 
   editUser(user: User): void {
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.loadUsers(); // Recarga los usuarios después de cerrar el modal, para reflejar los cambios
+      this.loadUsers(); 
     });
   }
 
@@ -60,8 +60,8 @@ export class HomeComponent implements OnInit {
     if (this.userForm.valid) {
       this.userService.createUser(this.userForm.value).subscribe({
         next: () => {
-          this.loadUsers(); // Recargar la lista de usuarios después de crear uno
-          this.userForm.reset(); // Reiniciar el formulario
+          this.loadUsers(); 
+          this.userForm.reset(); 
         },
         error: (error) => console.error(error),
       });

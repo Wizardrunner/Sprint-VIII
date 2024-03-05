@@ -10,7 +10,7 @@ Chart.register(...registerables);
   standalone: true,
   imports: [],
   templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.scss'] // Asegúrate de tener este archivo para los estilos
+  styleUrls: ['./pie-chart.component.scss'] 
 })
 export class PieChartComponent implements OnInit {
   currentMonthIndex: number = new Date().getMonth();
@@ -35,9 +35,11 @@ export class PieChartComponent implements OnInit {
         console.error('No data found for month:', month);
         return;
       }
-
+  
       const chartData = [monthData.tools, monthData.gardening, monthData.appliances, monthData.apparel];
-
+  
+      const currentMonth = this.months[this.currentMonthIndex];
+  
       if (this.chart) {
         this.chart.data.datasets[0].data = chartData;
         this.chart.update();
@@ -53,34 +55,35 @@ export class PieChartComponent implements OnInit {
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)'
+                'rgba(75, 192, 192, 0.2)',
               ],
             }]
           },
           options: {
             plugins: {
+              legend: {
+                position: 'bottom'
+              },
               tooltip: {
                 callbacks: {
-                  label: function(context) {
-                    let label = context.label || '';
-                    if (label) {
-                      label += ': ';
-                    }
-                    const total = context.dataset.data.reduce((previousValue, currentValue) => previousValue + (+currentValue), 0);
-                    const currentValue = context.raw as number; 
-                    const percentage = Math.round((currentValue / total) * 100);
-                    label += `${currentValue} (${percentage}%)`;
-                    return label;
+                  label: (context) => {
+                    const value = context.parsed;
+                    const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                    const percentage = Math.round((value / total) * 100);
+        
+                    const currentMonth = this.months[this.currentMonthIndex];
+        
+                    return `${currentMonth}: ${value} (${percentage}%)`;
                   }
                 }
               }
             },
             responsive: true,
-            maintainAspectRatio: false, // Esto permite que el gráfico se adapte al tamaño del contenedor
-            aspectRatio: 1, // Define un ratio de aspecto para el gráfico, puedes ajustarlo según necesites
+            maintainAspectRatio: false,
           }
         });
       }
     });
   }
-}
+  
+  }

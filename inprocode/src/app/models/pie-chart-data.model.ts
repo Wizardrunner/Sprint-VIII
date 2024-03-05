@@ -6,5 +6,6 @@ export interface PieChartData {
     gardening: number;
     appliances: number;
     apparel: number;
+    [key: string]: string | number;
   }
   
