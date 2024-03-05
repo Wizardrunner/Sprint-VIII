@@ -18,10 +18,10 @@ export class PieChartDataService {
       map(data => 
         data.map(item => ({
           ...item,
-          toys: +item.toys,
-          electronics: +item.electronics,
-          groceries: +item.groceries,
-          furniture: +item.furniture
+          tools: +item.tools,
+          gardening: +item.gardening,
+          appliances: +item.appliances,
+          apparel: +item.apparel
         }))
       )
     );

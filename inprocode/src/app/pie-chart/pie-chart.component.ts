@@ -36,7 +36,7 @@ export class PieChartComponent implements OnInit {
         return;
       }
 
-      const chartData = [monthData.toys, monthData.electronics, monthData.groceries, monthData.furniture];
+      const chartData = [monthData.tools, monthData.gardening, monthData.appliances, monthData.apparel];
 
       if (this.chart) {
         this.chart.data.datasets[0].data = chartData;
@@ -45,7 +45,7 @@ export class PieChartComponent implements OnInit {
         this.chart = new Chart("pieChart", {
           type: 'pie',
           data: {
-            labels: ['Toys', 'Electronics', 'Groceries', 'Furniture'],
+            labels: ['Tools', 'Gardening', 'Appliances', 'Apparel'],
             datasets: [{
               label: 'Gastos por Categoría',
               data: chartData,
