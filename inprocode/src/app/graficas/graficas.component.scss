@@ -1,0 +1,26 @@
+.chart-section {
+    margin-bottom: 20px;
+  }
+  
+  .chart-title {
+    display: inline;
+    margin-right: 15px;
+  }
+  
+  .title-underline {
+    margin-top: -5px;
+  }
+  
+  .month-navigation {
+    float: right;
+    display: flex;
+    align-items: center;
+  
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+  

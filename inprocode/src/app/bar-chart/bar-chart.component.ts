@@ -9,7 +9,7 @@ Chart.register(...registerables);
   selector: 'app-bar-chart',
   standalone: true,
   imports: [],
-  template: `<canvas id="barChart"></canvas>`,
+  templateUrl: './bar-chart.component.html',
   styles: []
 })
 export class BarChartComponent implements OnInit {
@@ -36,6 +36,9 @@ export class BarChartComponent implements OnInit {
           }]
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false, 
+          aspectRatio: 1, 
           scales: {
             y: {
               beginAtZero: true

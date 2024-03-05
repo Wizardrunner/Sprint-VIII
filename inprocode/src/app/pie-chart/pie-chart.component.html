@@ -1,5 +1,14 @@
-<!-- pie-chart.component.html -->
-<div style="width: 50%; margin: auto;">
+<!-- src/app/pie-chart/pie-chart.component.html -->
+<div>
+  <h2>Pie Chart</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="flex-grow: 1;">
+      <button (click)="navigateMonths(-1)">&#8592;</button>
+      {{ months[currentMonthIndex] }}
+      <button (click)="navigateMonths(1)">&#8594;</button>
+    </div>
+  </div>
+  <div class="pie-chart-container">
     <canvas id="pieChart"></canvas>
   </div>
-  
+  </div>
