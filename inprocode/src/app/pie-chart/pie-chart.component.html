@@ -1,14 +1,14 @@
 <!-- src/app/pie-chart/pie-chart.component.html -->
-<div>
-  <h2>Pie Chart</h2>
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="flex-grow: 1;">
-      <button (click)="navigateMonths(-1)">&#8592;</button>
-      {{ months[currentMonthIndex] }}
-      <button (click)="navigateMonths(1)">&#8594;</button>
+<div class="chart-header">
+    <h2>Pie Chart</h2>
+    <div class="navigation-container">
+      <button (click)="navigateMonths(-1)" class="navigation-button prev"></button>
+      <span>{{ months[currentMonthIndex] }}</span>
+      <button (click)="navigateMonths(1)" class="navigation-button next"></button>
     </div>
   </div>
+  <hr class="divider"/>
   <div class="pie-chart-container">
     <canvas id="pieChart"></canvas>
   </div>
-  </div>
+  

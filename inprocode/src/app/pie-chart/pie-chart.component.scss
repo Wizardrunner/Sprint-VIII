@@ -1,6 +1,67 @@
 // src/app/pie-chart/pie-chart.component.scss
-.pie-chart-container {
-    max-width: 400px; 
-    margin: auto;
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 40px; 
   }
   
+  .chart-container {
+    max-width: 600px; 
+    margin: 20px auto 40px;
+    position: relative; 
+  }
+  
+/* Ajustes generales para los botones de navegación */
+.navigation-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.navigation-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0 15px; 
+    width: 40px; 
+    height: 40px; 
+    
+    &:hover {
+      color: #0056b3;
+    }
+}
+
+.navigation-button.prev::before, .navigation-button.next::before {
+    content: '';
+    border: 10px solid transparent; 
+    position: absolute;
+}
+
+.navigation-button.prev::before {
+    border-right-color: #007bff; 
+    transform: translate(-50%, -50%);
+}
+
+.navigation-button.next::before {
+    border-left-color: #007bff; 
+    transform: translate(-50%, -50%);
+}
+
+/* Estilos para el mes */
+.navigation-container > span {
+    font-size: 18px;
+    font-weight:bold;
+    margin: 0;
+}
+    
+.divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+}

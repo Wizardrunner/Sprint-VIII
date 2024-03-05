@@ -1,3 +1,15 @@
 <!-- src/app/bar-chart/bar-chart.component.html -->
-<h2>Bar Chart</h2>
-<canvas id="barChart"></canvas>
+<!-- src/app/bar-chart/bar-chart.component.html -->
+<div class="chart-header">
+    <h2>Bar Chart</h2>
+    <div class="navigation-container">
+        <button (click)="navigateYears(-1)" class="navigation-button prev"></button>
+        <span>{{ years[currentYearIndex] }}</span>
+        <button (click)="navigateYears(1)" class="navigation-button next"></button>
+    </div>
+  </div>
+  <hr class="divider"/>
+  <div class="chart-container">
+    <canvas id="barChart"></canvas>
+  </div>
+    
