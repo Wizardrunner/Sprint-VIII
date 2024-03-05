@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-03-2024 a las 00:53:42
+-- Tiempo de generación: 05-03-2024 a las 19:10:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -134,17 +134,17 @@ INSERT INTO `graphics_barchart` (`id`, `year`, `series_a`, `series_b`) VALUES
 CREATE TABLE `graphics_piechart` (
   `id` int(11) NOT NULL,
   `month` varchar(255) NOT NULL,
-  `toys` decimal(5,2) NOT NULL,
-  `electronics` decimal(5,2) NOT NULL,
-  `groceries` decimal(5,2) NOT NULL,
-  `furniture` decimal(5,2) NOT NULL
+  `tools` decimal(5,2) NOT NULL,
+  `gardening` decimal(5,2) NOT NULL,
+  `appliances` decimal(5,2) NOT NULL,
+  `apparel` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `graphics_piechart`
 --
 
-INSERT INTO `graphics_piechart` (`id`, `month`, `toys`, `electronics`, `groceries`, `furniture`) VALUES
+INSERT INTO `graphics_piechart` (`id`, `month`, `tools`, `gardening`, `appliances`, `apparel`) VALUES
 (1, 'January', 20.50, 10.30, 30.80, 38.40),
 (2, 'February', 15.20, 25.00, 20.70, 39.10),
 (3, 'March', 12.80, 32.00, 18.50, 36.70),
@@ -288,7 +288,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Books`
 --
 ALTER TABLE `Books`
-  MODIFY `id_book` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id_book` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de la tabla `events`
@@ -324,7 +324,7 @@ ALTER TABLE `RecoveryTokens`
 -- AUTO_INCREMENT de la tabla `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id_user` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id_user` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- Restricciones para tablas volcadas

@@ -1,7 +1,9 @@
 // src/app/models/bar-chart-data.model.ts
 export interface BarChartData {
     year: number;
-    series_a: number;
-    series_b: number;
+    technology: number;
+    clothing: number;
+    food: number;
+    home: number;
   }
   

@@ -17,28 +17,42 @@ export class BarChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getBarChartData().subscribe(data => {
-      const years = data.map((d: any) => d.year);
-      const seriesA = data.map((d: any) => d.series_a);
-      const seriesB = data.map((d: any) => d.series_b);
-
+      const years = data.map(d => d.year.toString());
+      const technology = data.map(d => d.technology);
+      const clothing = data.map(d => d.clothing);
+      const food = data.map(d => d.food);
+      const home = data.map(d => d.home);
+  
       const chart = new Chart("barChart", {
         type: 'bar',
         data: {
-          labels: years, // Usamos los años como etiquetas
-          datasets: [{
-            label: 'Series A',
-            data: seriesA, // Datos para la serie A
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          }, {
-            label: 'Series B',
-            data: seriesB, // Datos para la serie B
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          }]
+          labels: years,
+          datasets: [
+            {
+              label: 'Technology',
+              data: technology,
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            },
+            {
+              label: 'Clothing',
+              data: clothing,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            },
+            {
+              label: 'Food',
+              data: food,
+              backgroundColor: 'rgba(255, 206, 86, 0.2)',
+            },
+            {
+              label: 'Home',
+              data: home,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            }
+          ],
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false, 
-          aspectRatio: 1, 
+          maintainAspectRatio: false,
           scales: {
             y: {
               beginAtZero: true
@@ -48,4 +62,4 @@ export class BarChartComponent implements OnInit {
       });
     });
   }
-}
+  }

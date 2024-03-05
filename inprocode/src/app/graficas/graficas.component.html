@@ -1,17 +1,5 @@
 <!-- src/app/graficas/graficas.component.html -->
-<div class="chart-section">
-  <h2 class="chart-title">Bar Chart</h2>
-  <hr class="title-underline">
-  <app-bar-chart></app-bar-chart>
-</div>
-
-<div class="chart-section">
-  <h2 class="chart-title">Pie Chart</h2>
-  <div class="month-navigation">
-    <button (click)="navigateMonths(-1)">&#8592;</button>
-    <span>{{ currentMonth }}</span>
-    <button (click)="navigateMonths(1)">&#8594;</button>
+<div>
+    <app-bar-chart></app-bar-chart>
+    <app-pie-chart></app-pie-chart>
   </div>
-  <hr class="title-underline">
-  <app-pie-chart></app-pie-chart>
-</div>
