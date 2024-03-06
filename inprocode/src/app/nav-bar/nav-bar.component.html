@@ -1,7 +1,10 @@
 <!-- nav-bar.component.html -->
 <nav class="nav">
-    <a routerLink="/" routerLinkActive="active">Home</a>
-    <a routerLink="/mapa" routerLinkActive="active">Map</a>
-    <a routerLink="/fullCalendar" routerLinkActive="active">FullCalendar</a>
-    <a routerLink="/graficas" routerLinkActive="active">Charts</a>
+    <div class="logo">SPRINT 8</div>
+    <div class="nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a routerLink="/mapa" routerLinkActive="active">Map</a>
+        <a routerLink="/fullCalendar" routerLinkActive="active">FullCalendar</a>
+        <a routerLink="/graficas" routerLinkActive="active">Charts</a>
+    </div>
 </nav>

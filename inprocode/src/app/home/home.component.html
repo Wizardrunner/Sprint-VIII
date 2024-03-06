@@ -1,24 +1,31 @@
 <!-- src/app/home.component.html -->
-<div>
-  <h2>Crear Nuevo Usuario</h2>
-  <form [formGroup]="userForm" (ngSubmit)="createUser()">
-    <input type="text" formControlName="name" placeholder="Nombre" required>
-    <input type="text" formControlName="surname" placeholder="Apellido">
-    <input type="email" formControlName="email" placeholder="Email" required>
-    <input type="password" formControlName="password" placeholder="Contraseña" required>
-    <button type="submit" [disabled]="!userForm.valid">Crear Usuario</button>
-  </form>
-</div>
+<div class="content-container">
+  <div class="chart-header">
+    <h2>Create New User</h2>
+  </div>
+  <div class="divider"></div>
+  <div class="form-container">
+    <form [formGroup]="userForm" (ngSubmit)="createUser()" class="user-form">
+      <input type="text" formControlName="name" placeholder="Name" required>
+      <input type="text" formControlName="surname" placeholder="Surname">
+      <input type="email" formControlName="email" placeholder="Email" required>
+      <input type="password" formControlName="password" placeholder="Password" required>
+      <button type="submit" [disabled]="!userForm.valid">Create User</button>
+    </form>
+  </div>
 
-<div>
-  <h2>Lista de Usuarios</h2>
-  <table>
+  <div class="chart-header users-list-header">
+    <h2>User List</h2>
+  </div>
+  <div class="divider"></div>
+  <div class="table-container">
+    <table class="user-table">
     <tr>
       <th>ID</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
+      <th>Name</th>
+      <th>Surname</th>
       <th>Email</th>
-      <th>Acciones</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let user of users">
       <td>{{ user.id_user }}</td>
@@ -26,9 +33,9 @@
       <td>{{ user.surname }}</td>
       <td>{{ user.email }}</td>
       <td>
-        <button (click)="editUser(user)">Editar</button>
-        <button *ngIf="user.id_user !== undefined" (click)="deleteUser(user.id_user)">Eliminar</button>
+        <button (click)="editUser(user)" class="edit">Edit</button>
+        <button *ngIf="user.id_user !== undefined" (click)="deleteUser(user.id_user)" class="delete">Delete</button>
       </td>
     </tr>
-          </table>
+  </table>
 </div>

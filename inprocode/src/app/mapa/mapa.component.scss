@@ -1,5 +1,37 @@
-// src/app/mapa.component.scss
+/* src/app/mapa.component.scss */
+.map-container {
+  max-width: 100%;
+  padding: 20px;
+  margin: auto;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  margin-bottom: 20px;
+}
+
 #map {
-    height: 400px;
+  height: 400px;
+  margin: auto;
+  width: calc(100% - 40px); /* Ajusta el ancho considerando el padding */
+}
+
+/* Estilos responsivos para el mapa */
+@media (max-width: 768px) {
+  .map-container {
+    padding: 10px;
   }
-  
+
+  #map {
+    width: calc(100% - 20px); /* Ajusta para pantallas más pequeñas */
+  }
+}

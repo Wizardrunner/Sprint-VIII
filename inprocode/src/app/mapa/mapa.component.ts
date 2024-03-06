@@ -1,3 +1,4 @@
+// src/app/mapa.component.ts
 import { Component, OnInit } from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { LocationService } from '../services/location.service';
@@ -47,14 +48,19 @@ export class MapaComponent implements OnInit {
   }
 
   private getPopupContent(location: MapLocation, marker: L.Marker): string {
+    // Estilos en línea para los botones, ajustados a colores similares a los de Bootstrap
+    const editButtonStyle = "background-color: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-right: 5px;";
+    const deleteButtonStyle = "background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;";
+    
     return `<b>${location.name}</b><br>` +
-           `<button id="edit-${location.id}">Edit</button>` +
-           `<button id="delete-${location.id}">Delete</button>`;
-  }
+           `<button id="edit-${location.id}" style="${editButtonStyle}">Edit</button>` +
+           `<button id="delete-${location.id}" style="${deleteButtonStyle}">Delete</button>`;
+}
 
   private attachPopupEventListeners(location: MapLocation, marker: L.Marker): void {
     const editButton = document.getElementById(`edit-${location.id}`);
     const deleteButton = document.getElementById(`delete-${location.id}`);
+    
 
     if (editButton && location.id !== undefined) {
       editButton.onclick = () => this.editLocation(location.id as number, marker, location.name);

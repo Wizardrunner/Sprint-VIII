@@ -1,32 +1,34 @@
-/* nav-bar.component.scss */
 .nav {
-    padding: 1rem;
-    background-color: #f0f0f0;
-    display: flex;
-    gap: 1rem;
-  
-    a {
-      text-decoration: none;
-      color: #333;
-  
-      &.active {
-        color: #007bff;
+  padding: 1rem 2rem; 
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .logo {
+      font-size: 1.5rem; 
+      font-weight: bold;
+      color: #007bff; 
+  }
+
+  .nav-links {
+      display: flex;
+      gap: 1rem;
+
+      a {
+          font-size: 1rem; 
+          font-weight: bold;
+          color: #333; 
+          padding: 0.5rem 1rem; 
+          border-radius: 5px; 
+          text-decoration: none; 
+          transition: background-color 0.3s, color 0.3s; 
+
+          &:hover, &.active {
+              color: #ffffff; 
+              background-color: #007bff; // Color de fondo para hover y activo
+              text-decoration: none; 
+          }
       }
-    }
   }
-  
-  .nav a {
-    cursor: pointer; // Asegura que el cursor cambie a pointer
-    text-decoration: none;
-    color: #007bff;
-  
-    &:hover {
-      text-decoration: underline;
-    }
-  
-    &.active {
-      color: #0056b3;
-      text-decoration: underline;
-    }
-  }
-  
+}
