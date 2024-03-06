@@ -1,5 +1,5 @@
 // src/app/full-calendar/full-calendar.component.ts
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -15,7 +15,7 @@ import { EventService } from '../services/event.service';
 export class FullCalendarComponent implements AfterViewInit {
   calendarOptions: any;
 
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private elRef: ElementRef) {
     this.calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
@@ -28,13 +28,55 @@ export class FullCalendarComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.loadEvents();
+    // Espera a que los eventos se carguen y el calendario se inicialice completamente
+    setTimeout(() => {
+      this.addDividerUnderTitle();
+      this.customizeCalendarHeader(); 
+      this.customizeCalendarTitle();
+    }, 0);
   }
-
+  
   loadEvents(): void {
     this.eventService.getEvents().subscribe(events => {
       this.calendarOptions.events = events;
     });
   }
+
+  private addDividerUnderTitle() {
+  
+    const calendarContainer = this.elRef.nativeElement.querySelector('.fc-header-toolbar');
+    if (calendarContainer) {
+      const divider = document.createElement('div');
+      divider.className = 'divider';
+      divider.style.width = '100%';
+      divider.style.marginBottom = '30px'; 
+      divider.style.height = '1px';
+      divider.style.backgroundImage = 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))';
+      calendarContainer.after(divider); 
+    }
+  }
+  private customizeCalendarHeader() {
+    setTimeout(() => { 
+      const headerElement = this.elRef.nativeElement.querySelector('.fc-header-toolbar');
+      if (headerElement) {
+        headerElement.style.display = 'flex';
+        headerElement.style.justifyContent = 'space-between';
+        headerElement.style.alignItems = 'center';
+        headerElement.style.margin = '20px 40px';
+        headerElement.style.height = '60px';
+      }
+    }, 0);
+  }
+  
+  private customizeCalendarTitle() {
+    setTimeout(() => { 
+      const titleElement = this.elRef.nativeElement.querySelector('.fc-toolbar-title');
+      if (titleElement) {
+        titleElement.style.margin = '0 0 16px'; 
+      }
+    }, 0);
+  }
+  
 
   handleDateClick(arg: any): void {
     const title = prompt('Título del Evento:');

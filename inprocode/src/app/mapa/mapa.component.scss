@@ -1,15 +1,20 @@
 /* src/app/mapa.component.scss */
-.map-container {
-  max-width: 100%;
-  padding: 20px;
-  margin: auto;
+h2 {
+    font-size: 1.75em;
 }
-
 .chart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px 40px;
+  height: 60px;
+}
+
+.chart-container {
+  max-width: 100%; 
+  margin: auto; 
+  height: 400px;
+  position: relative; 
 }
 
 .divider {

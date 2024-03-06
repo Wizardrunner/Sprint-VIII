@@ -1,9 +1,13 @@
 /* src/app/bar-chart/bar-chart.component.scss */
+h2 {
+    font-size: 1.75em;
+}
+
 .chart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 40px; // Ajusta según necesites más espacio del borde
+    margin: 20px 40px;
 }
     
 .chart-container {
@@ -17,7 +21,7 @@
 .navigation-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     margin-bottom: 20px;
 }
 
