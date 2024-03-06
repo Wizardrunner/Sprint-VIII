@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 @Component({
   selector: 'app-full-calendar',
   standalone: true,
-  imports: [FullCalendarModule], 
+  imports: [FullCalendarModule],
   templateUrl: './full-calendar.component.html',
   styleUrls: ['./full-calendar.component.scss']
 })
@@ -26,9 +26,9 @@ export class FullCalendarComponent implements AfterViewInit {
       plugins: [dayGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
       events: [],
-      dateClick: this.handleDateClick.bind(this), 
-      eventClick: this.handleEventClick.bind(this), 
-      displayEventTime: false, 
+      dateClick: this.handleDateClick.bind(this),
+      eventClick: this.handleEventClick.bind(this),
+      displayEventTime: false,
     };
   }
 
@@ -37,11 +37,11 @@ export class FullCalendarComponent implements AfterViewInit {
     // Espera a que los eventos se carguen y el calendario se inicialice completamente
     setTimeout(() => {
       this.addDividerUnderTitle();
-      this.customizeCalendarHeader(); 
+      this.customizeCalendarHeader();
       this.customizeCalendarTitle();
     }, 0);
   }
-  
+
   loadEvents(): void {
     this.eventService.getEvents().subscribe(events => {
       this.calendarOptions.events = events;
@@ -49,20 +49,20 @@ export class FullCalendarComponent implements AfterViewInit {
   }
 
   private addDividerUnderTitle() {
-  
+
     const calendarContainer = this.elRef.nativeElement.querySelector('.fc-header-toolbar');
     if (calendarContainer) {
       const divider = document.createElement('div');
       divider.className = 'divider';
       divider.style.width = '100%';
-      divider.style.marginBottom = '30px'; 
+      divider.style.marginBottom = '30px';
       divider.style.height = '1px';
       divider.style.backgroundImage = 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))';
-      calendarContainer.after(divider); 
+      calendarContainer.after(divider);
     }
   }
   private customizeCalendarHeader() {
-    setTimeout(() => { 
+    setTimeout(() => {
       const headerElement = this.elRef.nativeElement.querySelector('.fc-header-toolbar');
       if (headerElement) {
         headerElement.style.display = 'flex';
@@ -73,21 +73,21 @@ export class FullCalendarComponent implements AfterViewInit {
       }
     }, 0);
   }
-  
+
   private customizeCalendarTitle() {
-    setTimeout(() => { 
+    setTimeout(() => {
       const titleElement = this.elRef.nativeElement.querySelector('.fc-toolbar-title');
       if (titleElement) {
-        titleElement.style.margin = '0 0 16px'; 
+        titleElement.style.margin = '0 0 16px';
       }
     }, 0);
   }
-  
+
 
   handleDateClick(arg: any): void {
     const title = prompt('Título del Evento:');
-    const startDate = arg.dateStr; 
-    let endDate = prompt('Fecha de finalización del Evento (YYYY-MM-DD):', arg.dateStr); 
+    const startDate = arg.dateStr;
+    let endDate = prompt('Fecha de finalización del Evento (YYYY-MM-DD):', arg.dateStr);
 
     endDate = endDate ?? startDate;
 
@@ -107,57 +107,57 @@ export class FullCalendarComponent implements AfterViewInit {
     const endDateTime = `${endDate}T${endTime}`;
 
     if (title) {
-        const newEvent = { 
-            title, 
-            start: startDateTime,
-            end: endDateTime
-        };
+      const newEvent = {
+        title,
+        start: startDateTime,
+        end: endDateTime
+      };
 
-        this.eventService.addEvent(newEvent).subscribe(() => {
-            this.loadEvents(); 
-        }, error => {
-            console.error('Error al añadir el evento:', error);
-            alert('Hubo un problema al añadir el evento.');
-        });
-    }
-}
-    
-handleEventClick(clickInfo: any): void {
-  console.log("Datos del evento antes de abrir el diálogo:", clickInfo.event);
-
-  const eventInfo = {
-    id: clickInfo.event.id || clickInfo.event.extendedProps.publicId, // Asumiendo que el ID está aquí
-    title: clickInfo.event.title,
-    start: clickInfo.event.start.toISOString(), // Convierte a string ISO
-    end: clickInfo.event.end ? clickInfo.event.end.toISOString() : null // Convierte a string ISO si existe
-  };
-
-  console.log("Información del evento estructurada:", eventInfo);
-
-  const dialogRef = this.dialog.open(EditEventDialogComponent, {
-    width: '250px',
-    data: { event: eventInfo }
-    
-  });
-
-  dialogRef.afterClosed().subscribe((result: EventDialogData | undefined) => {
-    if (result && result.delete) {
-      console.log("Eliminando evento con ID:", result.event.id);
-      this.eventService.deleteEvent(result.event.id).subscribe(() => {
-        this.loadEvents(); // Recarga los eventos
-      }, error => console.error('Error al eliminar el evento:', error));
-    } else if (result) {
-      console.log("Actualizando evento con ID:", result.event.id, "y datos:", result.event);
-      const { id, ...eventData } = result.event;
-      this.eventService.updateEvent(id, eventData).pipe(
-        catchError(error => {
-          console.error('Error al actualizar el evento:', error);
-          return of([]); // Devuelve un observable vacío o maneja el error como prefieras
-        })
-      ).subscribe(response => {
-        this.loadEvents(); // Recarga los eventos para reflejar los cambios
+      this.eventService.addEvent(newEvent).subscribe(() => {
+        this.loadEvents();
+      }, error => {
+        console.error('Error al añadir el evento:', error);
+        alert('Hubo un problema al añadir el evento.');
       });
+    }
+  }
+
+  handleEventClick(clickInfo: any): void {
+    console.log("Datos del evento antes de abrir el diálogo:", clickInfo.event);
+
+    const eventInfo = {
+      id: clickInfo.event.id || clickInfo.event.extendedProps.publicId, // Asumiendo que el ID está aquí
+      title: clickInfo.event.title,
+      start: clickInfo.event.start.toISOString(), // Convierte a string ISO
+      end: clickInfo.event.end ? clickInfo.event.end.toISOString() : null // Convierte a string ISO si existe
+    };
+
+    console.log("Información del evento estructurada:", eventInfo);
+
+    const dialogRef = this.dialog.open(EditEventDialogComponent, {
+      width: '250px',
+      data: { event: eventInfo }
+
+    });
+
+dialogRef.afterClosed().subscribe((result: any) => {
+  if (result && result.event.delete) { // Asegurándonos de que se compruebe correctamente la propiedad delete.
+    const eventId = Number(result.event.id);
+    console.log("Eliminando evento con ID:", eventId);
+    this.eventService.deleteEvent(eventId).subscribe(() => {
+      console.log("Evento eliminado exitosamente");
+      this.loadEvents(); // Recarga los eventos
+    }, error => console.error('Error al eliminar el evento:', error));
+  } else if (result) {
+    // Solo actualiza si el evento no está marcado para eliminación
+    const eventId = Number(result.event.id); // Asegúrate de que el ID sea un número
+    console.log("Actualizando evento con ID:", eventId, "y datos:", result.event);
+    const { id, ...eventData } = result.event;
+    this.eventService.updateEvent(eventId, eventData).subscribe(() => {
+      console.log("Evento actualizado exitosamente");
+      this.loadEvents(); // Recarga los eventos para reflejar los cambios
+    }, error => console.error('Error al actualizar el evento:', error));
+  }
+});
           }
-  });
-}
 }

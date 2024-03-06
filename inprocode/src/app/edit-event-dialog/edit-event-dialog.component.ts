@@ -1,3 +1,4 @@
+// src/app/edit-event-dialog/edit-event-dialog.component.html
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
