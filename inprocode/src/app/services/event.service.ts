@@ -15,7 +15,6 @@ export class EventService {
     return this.http.get<any[]>(this.baseUrl);
   }
 
-
   addEvent(eventData: any): Observable<any> {
     console.log('Enviando evento al backend:', eventData);
     return this.http.post(this.baseUrl, eventData);
