@@ -19,7 +19,9 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 })
 export class HomeComponent implements OnInit {
   users: User[] = [];
-  userForm: FormGroup; 
+  userForm: FormGroup;
+  searchUserId: number | null = null;
+  searchedUser: User | null = null;
   isFormVisible: boolean = false;
 
   constructor(private dialog: MatDialog, private userService: UserService) { 

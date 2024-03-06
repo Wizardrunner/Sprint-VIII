@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-03-2024 a las 19:10:05
+-- Tiempo de generación: 06-03-2024 a las 06:01:46
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,8 +43,7 @@ CREATE TABLE `Books` (
 
 INSERT INTO `Books` (`id_book`, `user_id`, `title`, `year`, `status`, `created_at`, `updated_at`) VALUES
 (1, NULL, 'TituloA', 1955, 1, '2024-03-03 12:30:00', '2024-03-03 12:30:00'),
-(2, NULL, 'TituloB', 1988, 1, '2024-03-03 12:30:00', '2024-03-03 12:30:00'),
-(3, 2, 'TituloC', 1475, 1, '2024-03-03 12:30:00', '2024-03-03 12:30:00');
+(2, NULL, 'TituloB', 1988, 1, '2024-03-03 12:30:00', '2024-03-03 12:30:00');
 
 -- --------------------------------------------------------
 
@@ -108,22 +107,24 @@ INSERT INTO `events` (`id`, `title`, `start`, `end`) VALUES
 CREATE TABLE `graphics_barchart` (
   `id` int(11) NOT NULL,
   `year` int(11) DEFAULT NULL,
-  `series_a` int(11) DEFAULT NULL,
-  `series_b` int(11) DEFAULT NULL
+  `technology` int(11) DEFAULT NULL,
+  `clothing` int(11) DEFAULT NULL,
+  `food` int(11) DEFAULT NULL,
+  `home` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `graphics_barchart`
 --
 
-INSERT INTO `graphics_barchart` (`id`, `year`, `series_a`, `series_b`) VALUES
-(1, 2006, 65, 28),
-(2, 2007, 59, 48),
-(3, 2008, 80, 40),
-(4, 2009, 81, 19),
-(5, 2010, 56, 86),
-(6, 2011, 55, 27),
-(7, 2012, 40, 90);
+INSERT INTO `graphics_barchart` (`id`, `year`, `technology`, `clothing`, `food`, `home`) VALUES
+(1, 2006, 120, 150, 300, 200),
+(2, 2007, 200, 180, 290, 220),
+(3, 2008, 250, 130, 320, 250),
+(4, 2009, 220, 160, 310, 210),
+(5, 2010, 180, 200, 330, 240),
+(6, 2011, 230, 170, 300, 230),
+(7, 2012, 210, 190, 320, 260);
 
 -- --------------------------------------------------------
 
@@ -184,7 +185,8 @@ INSERT INTO `locations` (`id`, `name`, `latitude`, `longitude`) VALUES
 (31, 'El Pez Olímpico', 41.38617889, 2.19705105),
 (32, 'Plaça de Catalunya', 41.38703214, 2.17001438),
 (33, 'Plaça Espanya', 41.37505349, 2.14911461),
-(34, 'Parlament de Catalunya', 41.38812685, 2.18894005);
+(34, 'Parlament de Catalunya', 41.38812685, 2.18894005),
+(35, 'Estadi Olimpi Lluis Companys', 41.36515817, 2.15557337);
 
 -- --------------------------------------------------------
 
@@ -220,14 +222,17 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id_user`, `email`, `password`, `name`, `surname`, `created_at`, `updated_at`) VALUES
-(1, 'ismael.academy@gmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Ismael', NULL, '2024-03-03 12:30:00', '2024-03-03 12:30:00'),
-(2, 'laura@hotmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Laura', NULL, '2024-03-03 12:30:00', '2024-03-03 12:30:00'),
-(3, 'maria@hotmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Maria', 'kale', '2024-03-03 12:30:00', '2024-03-03 12:30:00'),
-(17, 'asf@no.com', '$2b$10$vjy7XyyMiXl1oSeK0WyWiu6UNxrqYpyRqdUMaRTq1CJsGfPq4Ei/W', 'Antonio', 'Luces', '2024-03-03 18:47:22', '2024-03-03 20:54:38'),
+(3, 'maria@hotmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Maria', 'Kale', '2024-03-03 12:30:00', '2024-03-05 23:07:17'),
+(17, 'anton@jotmeil.com', '$2b$10$vjy7XyyMiXl1oSeK0WyWiu6UNxrqYpyRqdUMaRTq1CJsGfPq4Ei/W', 'Antonio', 'Luces', '2024-03-03 18:47:22', '2024-03-05 23:27:20'),
 (22, 'lop@jomeil.com', '$2b$10$.J0pwVppG.vCNWP/yDyMteCWXRFdHIuRQzC9LUR3g.ar1cmEzfsOe', 'César', 'Lop', '2024-03-03 19:28:10', '2024-03-03 19:28:10'),
 (29, 'planeta.alderaan@gmail.com', '$2b$10$9Qu5Yx8qk5TFaV8rxFIXmOsU.OvXOlKYlbVCM8BuqcEqkeV958D1C', 'Guillermo', 'Esteban', '2024-03-03 20:57:09', '2024-03-03 20:57:09'),
 (30, 'promesa@tve1.com', '$2b$10$2u0P1lFxKXTiQwOsDGvdKe8coBq8ZzVBb45WhC20MUNEOoJAmw2Iu', 'Catalina', 'Luján', '2024-03-03 21:00:46', '2024-03-03 21:00:46'),
-(92, 'cifo@jate.com', '$2b$10$xiFDRMLjMSW2jCqbR6/u1ePXeESRfHn8QFeyOZO6M7znKpdBSc17y', 'Marianela', 'Cifuentes', '2024-03-04 05:26:49', '2024-03-04 05:26:49');
+(92, 'cifo@jate.com', '$2b$10$xiFDRMLjMSW2jCqbR6/u1ePXeESRfHn8QFeyOZO6M7znKpdBSc17y', 'Marianela', 'Cifuentes', '2024-03-04 05:26:49', '2024-03-04 05:26:49'),
+(129, 'carol@santos.com', '$2b$10$.VRFoAyUxOaOzs0vCGY7fuNBkmvtxOXog8VHCvddaRSKH7L4xbSCm', 'Carolina', 'Santos', '2024-03-05 22:58:51', '2024-03-05 22:58:51'),
+(131, 'cefe@yaju.com', '$2b$10$RBCo4PUIrhvsJ7EIohGi.uHIwAO3dhYpiDAbk0GXO.amIxkAx6qsa', 'Ceferino', 'Pérez', '2024-03-05 23:29:02', '2024-03-05 23:29:26'),
+(135, 'ismael.academy@gmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Ismael', NULL, '2024-03-06 00:14:11', '2024-03-06 00:14:11'),
+(136, 'laura@hotmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Laura', NULL, '2024-03-06 00:14:11', '2024-03-06 00:14:11'),
+(148, 'josf@gar.com', '$2b$10$jK7fxHvnxFehOjIgodQFluR3WwD7yLbCamA5013sbPte1ZJL2mS9W', 'Josefa', 'García', '2024-03-06 04:51:24', '2024-03-06 04:51:24');
 
 --
 -- Índices para tablas volcadas
@@ -288,7 +293,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Books`
 --
 ALTER TABLE `Books`
-  MODIFY `id_book` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id_book` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT de la tabla `events`
@@ -312,7 +317,7 @@ ALTER TABLE `graphics_piechart`
 -- AUTO_INCREMENT de la tabla `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `RecoveryTokens`
@@ -324,7 +329,7 @@ ALTER TABLE `RecoveryTokens`
 -- AUTO_INCREMENT de la tabla `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id_user` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id_user` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- Restricciones para tablas volcadas
