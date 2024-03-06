@@ -1,11 +1,15 @@
 <!-- src/app/home.component.html -->
 <div class="content-container">
-  <div class="chart-header">
-    <h2>Create New User</h2>
+  <div class="users-list-header">
+    <h2>User List</h2>
+    <button (click)="toggleFormVisibility()" class="new-user-btn">New User</button>
   </div>
   <div class="divider"></div>
-  <div class="form-container">
-    <form [formGroup]="userForm" (ngSubmit)="createUser()" class="user-form">
+
+  <div class="table-container">
+    <!-- Formulario, inicialmente oculto y colocado aquí para aparecer antes de la tabla -->
+    <div *ngIf="isFormVisible" class="form-container">
+      <form [formGroup]="userForm" (ngSubmit)="createUser()" class="user-form">
       <input type="text" formControlName="name" placeholder="Name" required>
       <input type="text" formControlName="surname" placeholder="Surname">
       <input type="email" formControlName="email" placeholder="Email" required>
@@ -14,13 +18,8 @@
     </form>
   </div>
 
-  <div class="chart-header users-list-header">
-    <h2>User List</h2>
-  </div>
-  <div class="divider"></div>
-  <div class="table-container">
-    <table class="user-table">
-    <tr>
+  <table class="user-table">
+  <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Surname</th>

@@ -20,6 +20,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 export class HomeComponent implements OnInit {
   users: User[] = [];
   userForm: FormGroup; 
+  isFormVisible: boolean = false;
 
   constructor(private dialog: MatDialog, private userService: UserService) { 
     this.userForm = new FormGroup({
@@ -78,4 +79,8 @@ export class HomeComponent implements OnInit {
       console.error('Intento de eliminar un usuario sin un ID válido');
     }
   }
+  toggleFormVisibility(): void {
+    this.isFormVisible = !this.isFormVisible;
+  }
+
 }  
