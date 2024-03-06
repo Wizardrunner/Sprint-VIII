@@ -1,0 +1,26 @@
+<!-- src/app/edit-event-dialog/edit-event-dialog.component.html -->
+<h2 mat-dialog-title>Modificar evento</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input matInput [(ngModel)]="data.event.title" name="title">
+  </mat-form-field>
+  <!-- Agregar campos para editar fecha/hora de inicio y fin -->
+  <mat-form-field appearance="fill">
+    <mat-label>Inicio</mat-label>
+    <input matInput type="datetime-local" [(ngModel)]="data.event.start" name="start">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Fin</mat-label>
+    <input matInput type="datetime-local" [(ngModel)]="data.event.end" name="end">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Color</mat-label>
+    <input matInput [(ngModel)]="data.event.color" name="color">
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="data.event.delete" name="delete">Eliminar evento</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial>Guardar</button>
+</div>

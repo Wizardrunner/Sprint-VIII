@@ -17,11 +17,15 @@ export class EventService {
 
 
   addEvent(eventData: any): Observable<any> {
+    console.log('Enviando evento al backend:', eventData);
     return this.http.post(this.baseUrl, eventData);
   }
-
-
+    
+  updateEvent(id: number, eventData: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, eventData);
+  }
+  
   deleteEvent(eventId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${eventId}`);
   }
-}
+  }

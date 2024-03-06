@@ -59,6 +59,9 @@ export default {
   updateEvent: async (id, { title, start, end }) => {
     try {
       const event = await Event.findByPk(id);
+      if (!event) {
+        throw new Error('Evento no encontrado');
+      }
       event.title = title;
       event.start = start;
       event.end = end;
@@ -67,7 +70,7 @@ export default {
     } catch (error) {
       throw error;
     }
-  },
+    },
 
   // Eliminar un evento
   deleteEvent: async (id) => {

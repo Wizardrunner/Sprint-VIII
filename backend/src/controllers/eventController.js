@@ -29,3 +29,15 @@ export const deleteEvent = async (req, res) => {
     res.status(500).send('Error al eliminar evento: ' + error.message);
   }
 };
+
+export const updateEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, start, end } = req.body;
+    const event = await EventModel.updateEvent(id, { title, start, end });
+    res.json({ message: "Evento actualizado con éxito", event });
+  } catch (error) {
+    console.error('Error al actualizar el evento:', error);
+    res.status(500).send('Error al actualizar el evento: ' + error.message);
+  }
+};

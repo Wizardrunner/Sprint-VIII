@@ -4,6 +4,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventService } from '../services/event.service';
+import { EditEventDialogComponent } from '../edit-event-dialog/edit-event-dialog.component';
+import { EventDialogData } from '../models/event-dialog-data.model';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 
 @Component({
   selector: 'app-full-calendar',
@@ -15,7 +21,7 @@ import { EventService } from '../services/event.service';
 export class FullCalendarComponent implements AfterViewInit {
   calendarOptions: any;
 
-  constructor(private eventService: EventService, private elRef: ElementRef) {
+  constructor(private eventService: EventService, private elRef: ElementRef, private dialog: MatDialog) {
     this.calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
@@ -116,11 +122,42 @@ export class FullCalendarComponent implements AfterViewInit {
     }
 }
     
-  handleEventClick(clickInfo: any): void {
-    if (confirm(`¿Estás seguro de que quieres eliminar el evento '${clickInfo.event.title}'?`)) {
-      this.eventService.deleteEvent(clickInfo.event.id).subscribe(() => {
-        clickInfo.event.remove(); // Elimina el evento del calendario
+handleEventClick(clickInfo: any): void {
+  console.log("Datos del evento antes de abrir el diálogo:", clickInfo.event);
+
+  const eventInfo = {
+    id: clickInfo.event.id || clickInfo.event.extendedProps.publicId, // Asumiendo que el ID está aquí
+    title: clickInfo.event.title,
+    start: clickInfo.event.start.toISOString(), // Convierte a string ISO
+    end: clickInfo.event.end ? clickInfo.event.end.toISOString() : null // Convierte a string ISO si existe
+  };
+
+  console.log("Información del evento estructurada:", eventInfo);
+
+  const dialogRef = this.dialog.open(EditEventDialogComponent, {
+    width: '250px',
+    data: { event: eventInfo }
+    
+  });
+
+  dialogRef.afterClosed().subscribe((result: EventDialogData | undefined) => {
+    if (result && result.delete) {
+      console.log("Eliminando evento con ID:", result.event.id);
+      this.eventService.deleteEvent(result.event.id).subscribe(() => {
+        this.loadEvents(); // Recarga los eventos
+      }, error => console.error('Error al eliminar el evento:', error));
+    } else if (result) {
+      console.log("Actualizando evento con ID:", result.event.id, "y datos:", result.event);
+      const { id, ...eventData } = result.event;
+      this.eventService.updateEvent(id, eventData).pipe(
+        catchError(error => {
+          console.error('Error al actualizar el evento:', error);
+          return of([]); // Devuelve un observable vacío o maneja el error como prefieras
+        })
+      ).subscribe(response => {
+        this.loadEvents(); // Recarga los eventos para reflejar los cambios
       });
-    }
-  }
+          }
+  });
+}
 }
