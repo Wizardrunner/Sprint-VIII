@@ -1,5 +1,10 @@
 /* src/app/full-calendar/full-calendar.component.scss */
-
+::ng-deep .fc-event {
+    cursor: pointer;
+  }
+    
+  
+  
   
 /* Agrega estilos para hacer el calendario más responsive */
 @media (max-width: 768px) {

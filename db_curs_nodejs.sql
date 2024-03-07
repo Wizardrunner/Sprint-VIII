@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-03-2024 a las 06:01:46
+-- Tiempo de generación: 07-03-2024 a las 02:07:41
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -83,7 +83,6 @@ INSERT INTO `events` (`id`, `title`, `start`, `end`) VALUES
 (25, 'Día Internacional de la Mujer', '2024-03-07 23:00:00', '2024-03-08 22:59:00'),
 (26, 'Día Internacional de las Juezas', '2024-03-09 23:00:00', '2024-03-10 22:59:00'),
 (27, 'Día Internacional para Combatir la Islamofobia', '2024-03-14 23:00:00', '2024-03-15 22:59:00'),
-(28, 'Día de la lengua francesa', '2024-03-19 23:00:00', '2024-03-20 22:59:00'),
 (29, 'Día Internacional de la Felicidad', '2024-03-19 23:00:00', '2024-03-20 22:59:00'),
 (30, 'Día Mundial del Agua', '2024-03-21 23:00:00', '2024-03-22 22:59:00'),
 (31, 'Día Meteorológico Mundial (OMM)', '2024-03-22 23:00:00', '2024-03-23 22:59:00'),
@@ -96,7 +95,9 @@ INSERT INTO `events` (`id`, `title`, `start`, `end`) VALUES
 (38, 'Día Mundial de la Poesía', '2024-03-20 23:00:00', '2024-03-21 22:59:00'),
 (39, 'Día Internacional del Naw-Rúz', '2024-03-20 23:00:00', '2024-03-21 22:59:00'),
 (40, 'Día Mundial del Síndrome de Down', '2024-03-20 23:00:00', '2024-03-21 22:59:00'),
-(41, 'Día Internacional de los Bosques', '2024-03-20 23:00:00', '2024-03-21 22:59:00');
+(41, 'Día Internacional de los Bosques', '2024-03-20 23:00:00', '2024-03-21 22:59:00'),
+(45, 'Día del padre', '2024-03-18 23:00:00', '2024-03-19 22:59:00'),
+(46, 'Día de la lengua francesa', '2024-03-19 23:00:00', '2024-03-20 22:59:00');
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,8 @@ INSERT INTO `Users` (`id_user`, `email`, `password`, `name`, `surname`, `created
 (131, 'cefe@yaju.com', '$2b$10$RBCo4PUIrhvsJ7EIohGi.uHIwAO3dhYpiDAbk0GXO.amIxkAx6qsa', 'Ceferino', 'Pérez', '2024-03-05 23:29:02', '2024-03-05 23:29:26'),
 (135, 'ismael.academy@gmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Ismael', NULL, '2024-03-06 00:14:11', '2024-03-06 00:14:11'),
 (136, 'laura@hotmail.com', '$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q', 'Laura', NULL, '2024-03-06 00:14:11', '2024-03-06 00:14:11'),
-(148, 'josf@gar.com', '$2b$10$jK7fxHvnxFehOjIgodQFluR3WwD7yLbCamA5013sbPte1ZJL2mS9W', 'Josefa', 'García', '2024-03-06 04:51:24', '2024-03-06 04:51:24');
+(148, 'josf@gar.com', '$2b$10$jK7fxHvnxFehOjIgodQFluR3WwD7yLbCamA5013sbPte1ZJL2mS9W', 'Josefa', 'García', '2024-03-06 04:51:24', '2024-03-06 04:51:24'),
+(170, 'adf@fas.com', '$2b$10$SJDBuSKNY5EjvITj/GT4IeT5viiTdsJ08u/N3JuxT6b7FMEeWReIy', 'Perico', '', '2024-03-06 20:18:54', '2024-03-06 20:18:54');
 
 --
 -- Índices para tablas volcadas
@@ -293,13 +295,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Books`
 --
 ALTER TABLE `Books`
-  MODIFY `id_book` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id_book` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT de la tabla `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `graphics_barchart`
@@ -329,7 +331,7 @@ ALTER TABLE `RecoveryTokens`
 -- AUTO_INCREMENT de la tabla `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id_user` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id_user` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- Restricciones para tablas volcadas

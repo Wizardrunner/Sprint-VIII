@@ -1,33 +1,96 @@
-# Inprocode
+# Inprocode Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-%2343853D.svg?style=for-the-badge&logo=node.js&logoColor=white)
 
-## Development server
+This project includes a frontend Angular application and a backend Node.js server. It requires setting up a `.env` file and a MySQL database using XAMPP and phpMyAdmin.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Set Up
 
-## Code scaffolding
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Wizardrunner/Sprint-VIII.git
+   ```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. **Navigate to the frontend directory:**
+   ```bash
+   cd inprocode
+   ```
 
-## Build
+3. **Install frontend dependencies:**
+   ```bash
+   npm install
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. **Navigate to the backend directory:**
+   ```bash
+   cd backend
+   ```
 
-## Running unit tests
+5. **Install backend dependencies:**
+   ```bash
+   npm install
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🔧 Configuration
 
-## Running end-to-end tests
+### Environment Variables
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Create a `.env` file in the backend directory with the following structure:
+```
+BCRYPT_SALT=10
+EMAIL_HOST=smtp.example.com
+EMAIL_USERNAME=your_email@example.com
+EMAIL_PORT=587
+EMAIL_PASSWORD=your_email_password
+FROM_EMAIL=your_email@example.com
+HOST_NAME=localhost
+USER_NAME=root
+PASSWORD=
+DATABASE=db_curs_nodejs
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=http://localhost:4200
+NODE_ENV=development
+BASE_DIR=
+```
+Replace placeholder values with your actual configuration details.
 
-## Further help
+### Database Setup
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Install [XAMPP](https://www.apachefriends.org/index.html) and launch phpMyAdmin.
+2. Create a new database named `db_curs_nodejs`.
+3. Import the provided SQL file to set up the database schema and initial data.
 
-## Dependencies
+## 🖥 Development Server
 
-npm install chart.js ng2-charts
+### Frontend
 
-npm install @fullcalendar/angular @fullcalendar/daygrid @fullcalendar/interaction   
+```bash
+# Navigate to the 'inprocode' directory if you are not already there
+cd inprocode
+ng serve
+```
+Navigate to `http://localhost:4200/`.
+
+### Backend
+
+```bash
+# Navigate to the 'backend' directory if you are not already there
+cd backend
+npm start
+```
+This will start the server on `http://localhost:3000/`.
+
+## 📦 Building for Production
+
+```bash
+# Make sure you are in the 'inprocode' directory
+ng build --prod
+```
+
+## 🛠 Further Help
+
+For more help on the Angular CLI:
+```bash
+ng help
+```
+Or check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

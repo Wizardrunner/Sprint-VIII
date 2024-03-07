@@ -5,10 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventService } from '../services/event.service';
 import { EditEventDialogComponent } from '../edit-event-dialog/edit-event-dialog.component';
-import { EventDialogData } from '../models/event-dialog-data.model';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 
 @Component({
@@ -126,10 +123,10 @@ export class FullCalendarComponent implements AfterViewInit {
     console.log("Datos del evento antes de abrir el diálogo:", clickInfo.event);
 
     const eventInfo = {
-      id: clickInfo.event.id || clickInfo.event.extendedProps.publicId, // Asumiendo que el ID está aquí
+      id: clickInfo.event.id || clickInfo.event.extendedProps.publicId, 
       title: clickInfo.event.title,
-      start: clickInfo.event.start.toISOString(), // Convierte a string ISO
-      end: clickInfo.event.end ? clickInfo.event.end.toISOString() : null // Convierte a string ISO si existe
+      start: clickInfo.event.start.toISOString(), 
+      end: clickInfo.event.end ? clickInfo.event.end.toISOString() : null 
     };
 
     console.log("Información del evento estructurada:", eventInfo);
@@ -141,7 +138,7 @@ export class FullCalendarComponent implements AfterViewInit {
     });
 
 dialogRef.afterClosed().subscribe((result: any) => {
-  if (result && result.event.delete) { // Asegurándonos de que se compruebe correctamente la propiedad delete.
+  if (result && result.event.delete) { 
     const eventId = Number(result.event.id);
     console.log("Eliminando evento con ID:", eventId);
     this.eventService.deleteEvent(eventId).subscribe(() => {
@@ -150,7 +147,7 @@ dialogRef.afterClosed().subscribe((result: any) => {
     }, error => console.error('Error al eliminar el evento:', error));
   } else if (result) {
     // Solo actualiza si el evento no está marcado para eliminación
-    const eventId = Number(result.event.id); // Asegúrate de que el ID sea un número
+    const eventId = Number(result.event.id); 
     console.log("Actualizando evento con ID:", eventId, "y datos:", result.event);
     const { id, ...eventData } = result.event;
     this.eventService.updateEvent(eventId, eventData).subscribe(() => {
@@ -159,5 +156,5 @@ dialogRef.afterClosed().subscribe((result: any) => {
     }, error => console.error('Error al actualizar el evento:', error));
   }
 });
-          }
+}
 }
